@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>A Beginners Introduction to Idris</title>
+
+		<link rel="stylesheet" href="css/custom.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<div class="slides">
+        <section data-background="images/tree.jpg">
+					<h1>A Beginners Introduction to Idris</h1>
+					<aside class="notes">
+						<ul>
+							<li>
+								I am not an expert. I'm very much a beginner
+							</li>
+							<li>
+								You should probably not run and rewrite your app in Idris
+							</li>
+							<li>
+								I'm just a person who started learning Idris, got excited and
+								wanted to get other people excited.
+							</li>
+						</ul>
+					</aside>
+        </section>
+				<section data-background="images/westbean.jpg">
+					<blockquote>
+						<p>
+							"Idris is a general purpose pure functional programming language
+							with dependent types."
+						</p>
+					</blockquote>
+					<cite>
+						http://idris-lang.org
+					</cite>
+					<aside class="notes">
+						<ul>
+							<li>
+								Like Haskell, Idris is pure, meaning functions can't have side-effects.
+							</li>
+							<li>
+								Unlike Haskell, Idris has dependent types. Types can depend on
+								values. For example, you can write a function that combines two lists. In most langs we can specify that each list must contain
+								the same types of items. In Idris we can say that, given a list
+								`n` length and a list of `m` length, the function returns a list
+								of `n + m` length
+							</li>
+						</ul>
+					</aside>
+				</section>
+				<section data-background="images/elcortez.jpg">
+					<h2>Idris Flyby</h2>
+					<aside class="notes">
+						<li>
+							What follows is a super high-level look at Idris syntax
+							; there is a lot more to it, but that is beyond my
+							current understanding and the scope of this talk.
+						</li>
+					</aside>
+				</section>
+				<section data-background="images/bus.jpg">
+				<h2>What Makes Idris Unique</h2>
+					<aside class="notes">
+						<li>
+							Or more accurately, what makes Idris worth your time.
+						</li>
+						<li>
+							It mostly looks like Haskell, but with a few extras.
+							So what
+						</li>
+					</aside>
+				</section>
+				<section data-background="images/nbc.jpg">
+					<h2>First-Class Dependent Types</h2>
+					<aside class="notes">
+						<ul>
+							<li>
+								First-class means there are no syntactic restrictions.
+							</li>
+							<li>
+								Functions can comput types, types can contain values (as we
+								saw).
+							</li>
+							<li>
+								Anything you can write at the value level, you can write at
+								the type level.
+							</li>
+						</ul>
+					</aside>
+				</section>
+				<section data-background="images/coaster.jpg">
+					<section>
+						<h2>Expressiveness</h2>
+						<aside class="notes">
+							<ul>
+								<li>
+									Idris encourages a style of development that puts as much
+									emphasis on coming up with adequately precise types as it does
+									on writing functions.
+								</li>
+								<li>
+									Describe a problem with as much precision as possible, and
+									encode that into the types.
+								</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h3>Sudoku</h3>
+						<ul>
+					    <li>A 9*9 grid of numbers</li>
+					    <li>A 9*9 grid of positive integers</li>
+					    <li>A 9*9 grid of positive integers between 1 and 9</li>
+					    <li>A 9*9 grid, with 9 3*3 boxes, containing positive integers between 1 and 9, where each integer appears exactly once in each
+							row, column, and box</li>
+						</ul>
+						<aside class="notes">
+							<ul>
+								<li>
+									Each of this describes a Sudoku game.
+								</li>
+								<li>
+									But only the last is precise enough to make illegal states
+									unrepresentable.
+								</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+						<h3>All The Precision?</h3>
+						<p class="fragment">
+							no.
+						</p>
+						<aside class="notes">
+							<ul>
+								<li>
+									Like most things in software there are tradeoffs
+								</li>
+								<li>
+									Precise types reduce & possibly completely remove certain
+									classes of bugs from your code.
+								</li>
+								<li>
+									Too precise though and they become difficult to write, read
+									and maintain.
+								</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section data-background="images/dock.jpg">
+					<h2>Type-Driven Development</h2>
+					<small>Type -> Define -> Refine</small>
+					<aside class="notes">
+						<ul>
+							<li>
+								Identify the data to be represented
+							</li>
+							<li>
+								Design a type to represent that data, and decide what aspects
+								of that data should be encoded in the type.
+							</li>
+							<li>
+								Identify an operation to act on that data
+							</li>
+							<li>
+								Establish the function input and output and decide if there there
+								is enough precision. If not return to step 2.
+							</li>
+							<li>
+								Implement the function. If difficult reconsider your type.
+							</li>
+							<li>
+								Use the compiler as a tool to guide you
+							</li>
+						</ul>
+					</aside>
+				</section>
+				<section data-background="images/gas.jpg">
+					<h2>Compiler As An Assistant</h2>
+					<aside class="notes">
+						<ul>
+							<li>
+								In Idris the compiler isn't just there to tell you when you make
+								an error.
+							</li>
+							<li>
+								The compiler can actively assist you in writing your program.
+								The trick is getting types that expressive enough.
+							</li>
+						</ul>
+					</aside>
+				</section>
+				<section data-background="images/bathroom.jpg">
+					<h2>Examples</h2>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+				transition: 'fade',
+				backgroundTransition: 'fade',
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
