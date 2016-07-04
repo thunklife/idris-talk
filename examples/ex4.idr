@@ -14,7 +14,7 @@ module Ex4
   map (g . h) f = map (g (map h f))
 -}
 
-comp : (Functor f) => (h : a -> b) ->
-                      (g : b -> c) ->
-                      (functor : f a) ->
-                      (map (g . h) functor) = map (g (map h functor))
+functorComp : Functor f => (h : a -> b) ->
+                           (g : b -> c) ->
+                           (functor: f a) ->
+                           map (g . h) functor = map g (map h functor)
